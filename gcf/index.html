@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCF</title>
+</head>
+
+<body>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <button onclick="findGCF()">Find Greatest Common Factor</button>
+    <h1 id="result"></h1>
+    <script>
+        function findFactors(number) {
+            let factors = [];
+
+            for (let i = number; i >= 1; i--) {
+                if (number % i == 0) {
+                    factors.push(i);
+                }
+            }
+            return factors;
+        }
+        function findGreatestCommon(factors1, factors2) {
+            for (let i = 0; i < factors1.length; i++) {
+                for (let j = 0; j < factors2.length; i++) {
+                    if (factors1[i] === factors2[j]) {
+                        return factors1[i]
+                    }
+                }
+            }
+
+        }
+        function findGCF() {
+            let num1 = parseInt(document.getElementById("num1").value)
+            let num2 = parseInt(document.getElementById("num2").value)
+            let factors1 = findFactors(num1);
+            let factors2 = findFactors(num2);
+            let greatestCommon = findGreatestCommon(factors1, factors2);
+            document.getElementById("result").innerHTML= greatestCommon;
+        }
+    </script>
+</body>
+
+</html>
