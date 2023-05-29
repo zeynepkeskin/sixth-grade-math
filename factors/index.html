@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCF and LCM</title>
+</head>
+
+<body>
+    <input type="number" id="num">
+    <button onclick="findFactors()">find factors</button>
+    <ul id="factors"></ul>
+
+    <script>
+        function findFactors() {
+            let number = parseInt(document.getElementById("num").value);
+            let ul = document.getElementById("factors");
+            ul.innerHTML = "";
+
+            for (let i = 1; i <= number; i++) {
+                if (number % i == 0) {
+                    ul.innerHTML += "<li>" + i + "</li>"
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
