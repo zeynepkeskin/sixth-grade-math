@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCF</title>
+</head>
+
+<body>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <button onclick="findLCM()">Find Least Common Multiple</button>
+    <h1 id="result"></h1>
+    <script>
+        function findLCM() {
+            var num1 = parseInt(document.getElementById("num1").value);
+            var num2 = parseInt(document.getElementById("num2").value);
+            var lcm = calculateLCM(num1, num2);
+            document.getElementById("result").textContent = "Least Common Multiple: " + lcm;
+        }
+
+        function calculateLCM(a, b) {
+            // Find the greatest common divisor (GCD) using Euclidean algorithm
+            var gcd = calculateGCD(a, b);
+
+            // Calculate the least common multiple (LCM) using the formula: LCM = (a * b) / GCD
+            var lcm = (a * b) / gcd;
+            return lcm;
+        }
+
+        function calculateGCD(a, b) {
+            // Implement the Euclidean algorithm to find the GCD
+            while (b !== 0) {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+    </script>
+</body>
+
+</html>
