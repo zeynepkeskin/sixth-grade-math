@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        width: 400px;
+        background-image: linear-gradient(
+          to bottom left,
+          rgb(37, 37, 37),
+          rgb(32, 23, 36)
+        );
+        border-radius: 10px;
+      }
+
+      .row {
+        flex: 1;
+        /* Optional: Add additional styling */
+        padding: 10px;
+        display: flex;
+        align-items: stretch;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn {
+        width: 100px;
+        height: 120%;
+        border: none;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.123);
+        color: white;
+        font-size: 17px;
+        margin-right: 3px;
+      }
+      .btn:hover {
+        background-color: rgba(255, 255, 255, 0.068);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <input type="text" />
+      </div>
+      <div class="row">
+        <button class="btn" id="btn1">1</button>
+        <button class="btn" id="btn2">2</button>
+        <button class="btn" id="btn3">3</button>
+        <button class="btn">÷</button>
+      </div>
+      <div class="row">
+        <button class="btn" id="btn4">4</button>
+        <button class="btn" id="btn5">5</button>
+        <button class="btn" id="btn6">6</button>
+      </div>
+      <div class="row">Row 3</div>
+      <div class="row">Row 4</div>
+      <div class="row">Row 5</div>
+    </div>
+  </body>
+</html>
