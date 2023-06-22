@@ -10,14 +10,24 @@
         flex-direction: column;
         height: 500px;
         width: 400px;
-        background-image: linear-gradient(
-          to bottom left,
-          rgb(37, 37, 37),
-          rgb(32, 23, 36)
-        );
+        background-color: rgb(0, 0, 0);
         border-radius: 10px;
+        padding: 10px;
       }
-
+      input {
+        cursor: default;
+        border: none;
+        border-radius: 10px;
+        width: 80%;
+        height: 100%;
+        margin-right: 10px;
+        font-size: 30px;
+        text-align: right;
+      }
+      input:focus {
+        outline: none;
+        border: none;
+      }
       .row {
         flex: 1;
         /* Optional: Add additional styling */
@@ -33,35 +43,140 @@
         height: 120%;
         border: none;
         cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.123);
+        background-color: rgb(43, 43, 43);
         color: white;
-        font-size: 17px;
+        font-size: 20px;
         margin-right: 3px;
+        border-radius: 8px;
       }
       .btn:hover {
-        background-color: rgba(255, 255, 255, 0.068);
+        background-color: rgb(31, 31, 31);
+      }
+      .op {
+        background-color: rgb(68, 68, 68);
+      }
+      .op:hover {
+        background-color: rgb(92, 92, 92);
+      }
+      #equal {
+        background-color: rgb(107, 107, 107);
+      }
+      #equal:hover {
+        background-color: rgb(134, 134, 134);
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <input type="text" />
+        <input readonly="readonly" />
+        <button class="btn" id="equal">=</button>
       </div>
       <div class="row">
-        <button class="btn" id="btn1">1</button>
-        <button class="btn" id="btn2">2</button>
-        <button class="btn" id="btn3">3</button>
-        <button class="btn">÷</button>
+        <button class="btn num">7</button>
+        <button class="btn num">8</button>
+        <button class="btn num">9</button>
+        <button class="btn op">+</button>
       </div>
       <div class="row">
-        <button class="btn" id="btn4">4</button>
-        <button class="btn" id="btn5">5</button>
-        <button class="btn" id="btn6">6</button>
+        <button class="btn num">4</button>
+        <button class="btn num">5</button>
+        <button class="btn num">6</button>
+        <button class="btn op">/</button>
       </div>
-      <div class="row">Row 3</div>
-      <div class="row">Row 4</div>
-      <div class="row">Row 5</div>
+      <div class="row">
+        <button class="btn num">1</button>
+        <button class="btn num">2</button>
+        <button class="btn num">3</button>
+        <button class="btn op">x</button>
+      </div>
+      <div class="row">
+        <button class="btn num">.</button>
+        <button class="btn num">0</button>
+        <button class="btn" id="clear">C</button>
+        <button class="btn op">-</button>
+      </div>
     </div>
+
+    <script>
+      var state = "first";
+      var firstNumber = "";
+      var secondNumber = "";
+      var operation = "";
+      var input = document.getElementsByTagName("input")[0];
+
+      Array.from(document.getElementsByClassName("num")).forEach((e) => {
+        e.onclick = () => {
+          if (
+            e.innerText === "." &&
+            state === "first" &&
+            firstNumber.includes(".")
+          ) {
+            return;
+          }
+          if (
+            e.innerText === "." &&
+            state === "second" &&
+            secondNumber.includes(".")
+          ) {
+            return;
+          }
+          if (state === "first") {
+            if (firstNumber === "" && e.innerText === ".") {
+              firstNumber = "0";
+            }
+            firstNumber += e.innerText;
+            input.value = firstNumber;
+          } else if (state === "op") {
+            if (secondNumber === "" && e.innerText === ".") {
+              secondNumber = "0";
+            }
+            secondNumber += e.innerText;
+            state = "second";
+            input.value = secondNumber;
+          } else if (state === "second") {
+            if (secondNumber === "" && e.innerText === ".") {
+              secondNumber = "0";
+            }
+            secondNumber += e.innerText;
+            input.value = secondNumber;
+          }
+        };
+      });
+
+      Array.from(document.getElementsByClassName("op")).forEach((e) => {
+        e.onclick = () => {
+          if (firstNumber === "") {
+            return;
+          }
+
+          state = "op";
+          operation = e.innerText;
+        };
+      });
+
+      document.getElementById("equal").onclick = () => {
+        if (firstNumber === "" || secondNumber === "" || operation === "") {
+          return;
+        }
+        if (operation === "+") {
+          input.value = parseFloat(firstNumber) + parseFloat(secondNumber);
+        } else if (operation === "/") {
+          input.value = parseFloat(firstNumber) / parseFloat(secondNumber);
+        } else if (operation === "x") {
+          input.value = parseFloat(firstNumber) * parseFloat(secondNumber);
+        } else if (operation === "-") {
+          input.value = parseFloat(firstNumber) - parseFloat(secondNumber);
+        }
+      };
+
+      document.getElementById("clear").onclick = () => {
+        firstNumber = "";
+        secondNumber = "";
+        operation = "";
+        state = "first";
+        input.value = "";
+      };
+    </script>
   </body>
 </html>
