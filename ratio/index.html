@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ratio</title>
+  </head>
+  <body>
+    <input type="number" />:<input type="number" /><button onclick="simplify()">
+      simplify ratio
+    </button>
+    <p id="result"></p>
+
+    <script>
+      function simplify() {
+        var n1 = document.getElementsByTagName("input")[0].value;
+        var n2 = document.getElementsByTagName("input")[1].value;
+
+        document.getElementById("result").innerHTML = n1 / n1 + ":" + n2 / n1;
+      }
+    </script>
+  </body>
+</html>
